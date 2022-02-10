@@ -1,0 +1,12 @@
+---
+- name: Ensure dependencies are installed
+  apt:
+    name: "{{ logrotate_dependencies }}"
+    state: present
+    update_cache: true
+
+- name: Setup logrotate scripts
+  template:
+    dest: "/etc/logrotate.d/{{ item.name }}"
+    src: script.j2
+  loop: "{{ logrotate_scripts }}"

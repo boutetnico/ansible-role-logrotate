@@ -1,0 +1,30 @@
+---
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: ansible-role-logrotate
+      logrotate_scripts:
+        - name: kibana
+          path: /var/log/kibana/*.log
+          options:
+            - rotate 7
+            - daily
+            - missingok
+            - notifempty
+            - delaycompress
+            - compress
+            - copytruncate
+            - create 0640 kibana kibana
+        - name: php8.1-fpm
+          path: /var/log/php8.1-fpm.log
+          options:
+            - rotate 7
+            - daily
+            - missingok
+            - notifempty
+            - delaycompress
+            - compress
+            - create 0640 root adm
+          scripts:
+            postrotate: /usr/lib/php/php8.1-fpm-reopenlogs
