@@ -17,7 +17,7 @@ def test_packages_are_installed(host, name):
 
 
 @pytest.mark.parametrize('file', [
-  ('kibana.conf'),
+  ('kibana'),
 ])
 def test_cron_files_exist(host, file):
     cron_file = host.file('/etc/logrotate.d/' + file)
