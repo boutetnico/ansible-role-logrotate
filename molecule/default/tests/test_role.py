@@ -16,7 +16,7 @@ def test_packages_are_installed(host, name):
     assert package.is_installed
 
 
-@pytest.mark.parametrize('file', [
+@pytest.mark.parametrize('file,user,group,mode', [
   ('kibana', 'root', 'root', 0o644),
 ])
 def test_cron_files_exist(host, file, user, group, mode):
