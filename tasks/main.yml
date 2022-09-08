@@ -1,12 +1,17 @@
 ---
 - name: Ensure dependencies are installed
-  apt:
+  ansible.builtin.apt:
     name: "{{ logrotate_dependencies }}"
     state: present
     update_cache: true
 
 - name: Setup logrotate scripts
-  template:
+  ansible.builtin.template:
     dest: "/etc/logrotate.d/{{ item.name }}"
+    group: root
+    mode: 0644
+    owner: root
     src: script.j2
   loop: "{{ logrotate_scripts }}"
+  loop_control:
+    label: "{{ item.name }}"

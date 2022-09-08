@@ -3,7 +3,7 @@
   hosts: all
 
   roles:
-    - role: ansible-role-logrotate
+    - role: boutetnico.logrotate
       logrotate_scripts:
         - name: kibana
           path: /var/log/kibana/*.log
