@@ -9,7 +9,7 @@
   ansible.builtin.template:
     dest: "/etc/logrotate.d/{{ item.name }}"
     group: root
-    mode: 0644
+    mode: "0644"
     owner: root
     src: script.j2
   loop: "{{ logrotate_scripts }}"
