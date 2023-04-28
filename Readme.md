@@ -51,8 +51,8 @@ Example Playbook
                 - compress
                 - copytruncate
                 - create 0640 kibana kibana
-            - name: php8.1-fpm
-              path: /var/log/php8.1-fpm.log
+            - name: php8.2-fpm
+              path: /var/log/php8.2-fpm.log
               options:
                 - rotate 7
                 - daily
@@ -62,7 +62,7 @@ Example Playbook
                 - compress
                 - create 0640 root adm
               scripts:
-                postrotate: /usr/lib/php/php8.1-fpm-reopenlogs
+                postrotate: /usr/lib/php/php8.2-fpm-reopenlogs
 
 
 Testing
