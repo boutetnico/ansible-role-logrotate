@@ -15,3 +15,7 @@
   loop: "{{ logrotate_scripts }}"
   loop_control:
     label: "{{ item.name }}"
+
+- name: Setup systemd config
+  ansible.builtin.import_tasks: systemd_setup.yml
+  when: logrotate_systemd_override
