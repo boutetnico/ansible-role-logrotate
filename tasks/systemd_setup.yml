@@ -1,0 +1,17 @@
+---
+- name: Ensure systemd logrotate directory exists
+  ansible.builtin.file:
+    group: root
+    mode: "0755"
+    owner: root
+    path: /etc/systemd/system/logrotate.timer.d
+    state: directory
+
+- name: Ensure override.conf is installed
+  ansible.builtin.template:
+    dest: /etc/systemd/system/logrotate.timer.d/override.conf
+    group: root
+    mode: "0644"
+    owner: root
+    src: systemd_override.conf
+  notify: Reload systemd daemon

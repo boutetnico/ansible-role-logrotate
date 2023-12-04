@@ -2,6 +2,10 @@
 logrotate_dependencies:
   - logrotate
 
+logrotate_systemd_override: {}
+# Timer:
+#   OnCalendar: "*:0/10"
+
 logrotate_scripts: []
 # - name: kibana
 #   path: /var/log/kibana/*.log

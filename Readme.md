@@ -22,10 +22,11 @@ Supported Platforms
 Role Variables
 --------------
 
-| Variable               | Required | Default             | Choices   | Comments                                 |
-|------------------------|----------|---------------------|-----------|------------------------------------------|
-| logrotate_dependencies | true     | `logrotate`         | string    |                                          |
-| logrotate_scripts      | true     | `[]`                | list      |                                          |
+| Variable                   | Required | Default             | Choices   | Comments                                 |
+|----------------------------|----------|---------------------|-----------|------------------------------------------|
+| logrotate_dependencies     | true     | `logrotate`         | string    |                                          |
+| logrotate_systemd_override | true     | `{}`                | dict      | Override logrotate systemd unit file.    |
+| logrotate_scripts          | true     | `[]`                | list      |                                          |
 
 Dependencies
 ------------
