@@ -18,4 +18,4 @@
 
 - name: Setup systemd config
   ansible.builtin.import_tasks: systemd_setup.yml
-  when: logrotate_systemd_override
+  when: logrotate_systemd_override | length > 0
