@@ -7,9 +7,14 @@ import pytest
         ("logrotate"),
     ],
 )
-def test_packages_are_installed(host, name):
+def test_dependencies_are_installed(host, name):
     package = host.package(name)
     assert package.is_installed
+
+
+def test_logrotate_command_is_available(host):
+    cmd = host.run("logrotate --version")
+    assert cmd.rc == 0
 
 
 @pytest.mark.parametrize(
@@ -18,10 +23,16 @@ def test_packages_are_installed(host, name):
         ("kibana", "root", "root", 0o644),
     ],
 )
-def test_cron_files_exist(host, file, user, group, mode):
-    cron_file = host.file("/etc/logrotate.d/" + file)
-    assert cron_file.exists
-    assert cron_file.is_file
-    assert cron_file.user == user
-    assert cron_file.group == group
-    assert cron_file.mode == mode
+def test_logrotate_scripts_exist(host, file, user, group, mode):
+    script = host.file("/etc/logrotate.d/" + file)
+    assert script.exists
+    assert script.is_file
+    assert script.user == user
+    assert script.group == group
+    assert script.mode == mode
+
+
+def test_logrotate_directory_exists(host):
+    directory = host.file("/etc/logrotate.d")
+    assert directory.exists
+    assert directory.is_directory
